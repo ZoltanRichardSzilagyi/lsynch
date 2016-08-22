@@ -49,7 +49,7 @@ public class SingleThreadDirectoryWatchExecutor implements DirectoryWatchExecuto
 					processEvents(watchKey);
 					final boolean valid = watchKey.reset();
 					if (!valid) {
-						logger.info("watchkey {} is not valid anymore", watchKey.toString());
+						logger.debug("watchkey {} is not valid anymore", watchKey.toString());
 					}
 				} catch (final Exception e) {
 					logger.error(e.getMessage(), e);
@@ -62,7 +62,6 @@ public class SingleThreadDirectoryWatchExecutor implements DirectoryWatchExecuto
 	@SuppressWarnings("unchecked")
 	private void processEvents(final WatchKey watchKey) {
 		watchKey.pollEvents().forEach(event -> {
-			logger.info("Watch event received.");
 			final WatchEvent<Path> watchEvent = (WatchEvent<Path>) event;
 			final Path basePath = watchKeyPathRegistry.get(watchKey);
 			final Path fullPath = basePath.resolve(watchEvent.context());

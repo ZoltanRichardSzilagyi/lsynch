@@ -22,7 +22,7 @@ public class LsynchCLI {
 		directoryWatcher.addToWatch(Paths.get("/home/zrs"));
 
 		directoryWatcher.stopWatching();
-		// applicationContext.close();
+		applicationContext.close();
 
 	}
 

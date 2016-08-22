@@ -20,6 +20,7 @@ public class FileSystemChangeEventRegistry implements EventRegistry<ChangeEvent<
 
 	@Override
 	public void registerEvent(ChangeEvent<Path, Kind<Path>> event) {
+		logger.debug("Register event: {}, file: {}", event.getEventType().name(), event.getSource().toString());
 		eventQueue.put(event);
 	}
 
