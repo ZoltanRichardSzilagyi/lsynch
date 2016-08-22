@@ -1,0 +1,16 @@
+apply plugin: 'java'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.slf4j:slf4j-api:1.7.21'
+    compile 'org.slf4j:slf4j-simple:1.7.21'
+	compile group: 'org.springframework', name: 'spring-context', version: '4.2.6.RELEASE'
+    compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.4'
+
+	compile project(':lsynch-api')
+	
+    testCompile 'junit:junit:4.12'
+}

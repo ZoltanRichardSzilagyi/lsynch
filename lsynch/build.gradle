@@ -1,15 +1,14 @@
-apply plugin: 'java'
-
-repositories {
-    mavenCentral()
-}
-
-dependencies {
-    compile 'org.slf4j:slf4j-api:1.7.21'
-    compile 'org.slf4j:slf4j-simple:1.7.21'
-	compile group: 'org.springframework', name: 'spring-context', version: '4.2.6.RELEASE'
-    compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.4'
-
-    testCompile 'junit:junit:4.12'
-    testCompile 'com.google.jimfs:jimfs:1.1'
+subprojects{
+	apply plugin: 'java'
+	
+	repositories {
+	    mavenCentral()
+	}
+	
+	dependencies {
+	    compile 'org.slf4j:slf4j-api:1.7.21'
+	    compile 'org.slf4j:slf4j-simple:1.7.21'
+	
+	    testCompile 'junit:junit:4.12'
+	}
 }
