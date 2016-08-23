@@ -9,7 +9,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.WatchEvent;
+import java.nio.file.WatchEvent.Kind;
 import java.nio.file.WatchKey;
 import java.nio.file.WatchService;
 import java.util.List;
@@ -78,7 +78,7 @@ public class RecursiveDirectoryWatcher implements DirectoryWatcher{
 		logger.debug("Register new directory: {}", directory.getFileName());
 		try {
 			final WatchKey watchKey = directory.register(watchService,
-					new WatchEvent.Kind[] { ENTRY_CREATE, ENTRY_MODIFY, ENTRY_DELETE, OVERFLOW });
+					new Kind[] { ENTRY_CREATE, ENTRY_MODIFY, ENTRY_DELETE, OVERFLOW });
 			watchKeyPathRegistry.add(watchKey, directory);
 		} catch (final IOException e) {
 			logger.error(e.getMessage(), e);

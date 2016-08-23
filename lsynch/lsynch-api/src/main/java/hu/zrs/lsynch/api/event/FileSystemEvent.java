@@ -3,19 +3,19 @@ package hu.zrs.lsynch.api.event;
 import static java.util.concurrent.TimeUnit.NANOSECONDS;
 
 import java.nio.file.Path;
-import java.nio.file.WatchEvent;
+import java.nio.file.WatchEvent.Kind;
 import java.util.concurrent.Delayed;
 import java.util.concurrent.TimeUnit;
 
-public class FileSystemEvent implements DelayedEvent<Path, WatchEvent.Kind<Path>> {
+public class FileSystemEvent implements DelayedEvent<Path, Kind<Path>> {
 
 	private final Path path;
 
-	private final WatchEvent.Kind<Path> eventType;
+	private final Kind<Path> eventType;
 
 	private final Long executeAt;
 
-	public FileSystemEvent(Path path, WatchEvent.Kind<Path> eventType, Long executeAt) {
+	public FileSystemEvent(Path path, Kind<Path> eventType, Long executeAt) {
 		this.path = path;
 		this.eventType = eventType;
 		this.executeAt = executeAt;
@@ -27,7 +27,7 @@ public class FileSystemEvent implements DelayedEvent<Path, WatchEvent.Kind<Path>
 	}
 
 	@Override
-	public WatchEvent.Kind<Path> getEventType() {
+	public Kind<Path> getEventType() {
 		return eventType;
 	}
 

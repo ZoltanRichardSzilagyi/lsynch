@@ -1,6 +1,6 @@
 package hu.zrs.lsynch.api.consumer;
 
-public interface EventConsumer<E> {
+public interface EventConsumer {
 
 	void startConsuming();
 
