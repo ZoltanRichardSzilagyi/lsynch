@@ -1,9 +1,9 @@
 package hu.zrs.lsynch.api.factory;
 
-import hu.zrs.lsynch.api.event.ChangeEvent;
+import hu.zrs.lsynch.api.event.DelayedEvent;
 
-public interface ChangeEventFactory<S, T> {
+public interface DelayedEventFactory<S, T> {
 
-	ChangeEvent<S, T> createEvent(S source, T eventType);
+	DelayedEvent<S, T> createEvent(S source, T eventType);
 
 }

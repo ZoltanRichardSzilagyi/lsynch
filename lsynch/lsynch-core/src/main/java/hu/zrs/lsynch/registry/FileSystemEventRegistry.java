@@ -8,25 +8,25 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
-import hu.zrs.lsynch.api.event.ChangeEvent;
+import hu.zrs.lsynch.api.event.DelayedEvent;
 import hu.zrs.lsynch.api.registry.EventRegistry;
 
 @Component
-public class FileSystemChangeEventRegistry implements EventRegistry<ChangeEvent<Path, Kind<Path>>> {
+public class FileSystemEventRegistry implements EventRegistry<DelayedEvent<Path, Kind<Path>>> {
 
-	private final Logger logger = LoggerFactory.getLogger(FileSystemChangeEventRegistry.class);
+	private final Logger logger = LoggerFactory.getLogger(FileSystemEventRegistry.class);
 
-	private final DelayQueue<ChangeEvent<Path, Kind<Path>>> eventQueue = new DelayQueue<>();
+	private final DelayQueue<DelayedEvent<Path, Kind<Path>>> eventQueue = new DelayQueue<>();
 
 	@Override
-	public void registerEvent(ChangeEvent<Path, Kind<Path>> event) {
+	public void registerEvent(DelayedEvent<Path, Kind<Path>> event) {
 		logger.debug("Register event: {}, file: {}", event.getEventType().name(), event.getSource().toString());
 		eventQueue.put(event);
 	}
 
 	@Override
-	public ChangeEvent<Path, Kind<Path>> take() {
-		ChangeEvent<Path, Kind<Path>> event = null;
+	public DelayedEvent<Path, Kind<Path>> take() {
+		DelayedEvent<Path, Kind<Path>> event = null;
 		try {
 			event = eventQueue.take();
 		} catch (final InterruptedException exception) {

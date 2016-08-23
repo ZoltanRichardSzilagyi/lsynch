@@ -1,4 +1,4 @@
-package hu.zrs.lsynch.api;
+package hu.zrs.lsynch.api.event;
 
 import static java.util.concurrent.TimeUnit.NANOSECONDS;
 
@@ -7,9 +7,7 @@ import java.nio.file.WatchEvent;
 import java.util.concurrent.Delayed;
 import java.util.concurrent.TimeUnit;
 
-import hu.zrs.lsynch.api.event.ChangeEvent;
-
-public class FileSystemChangeEvent implements ChangeEvent<Path, WatchEvent.Kind<Path>> {
+public class FileSystemEvent implements DelayedEvent<Path, WatchEvent.Kind<Path>> {
 
 	private final Path path;
 
@@ -17,7 +15,7 @@ public class FileSystemChangeEvent implements ChangeEvent<Path, WatchEvent.Kind<
 
 	private final Long executeAt;
 
-	public FileSystemChangeEvent(Path path, WatchEvent.Kind<Path> eventType, Long executeAt) {
+	public FileSystemEvent(Path path, WatchEvent.Kind<Path> eventType, Long executeAt) {
 		this.path = path;
 		this.eventType = eventType;
 		this.executeAt = executeAt;
