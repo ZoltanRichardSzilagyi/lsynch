@@ -7,7 +7,7 @@ import java.nio.file.WatchEvent.Kind;
 import java.util.concurrent.Delayed;
 import java.util.concurrent.TimeUnit;
 
-public class FileSystemEvent implements DelayedEvent<Path, Kind<Path>> {
+public class FileSystemEvent implements Event<Path, Kind<Path>>, Delayed {
 
 	private final Path path;
 

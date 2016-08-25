@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.WatchEvent.Kind;
 import java.nio.file.WatchService;
 import java.nio.file.attribute.FileAttribute;
 import java.util.ArrayList;
@@ -17,12 +16,13 @@ import org.springframework.context.annotation.PropertySource;
 
 import hu.zrs.lsynch.api.consumer.EventConsumer;
 import hu.zrs.lsynch.api.consumer.processor.EventProcessor;
-import hu.zrs.lsynch.api.event.DelayedEvent;
+import hu.zrs.lsynch.api.event.FileSystemEvent;
 import hu.zrs.lsynch.api.registry.EventRegistry;
 import hu.zrs.lsynch.api.registry.WatchKeyPathRegistry;
 import hu.zrs.lsynch.api.watcher.DirectoryWatchExecutor;
 import hu.zrs.lsynch.api.watcher.DirectoryWatcher;
 import hu.zrs.lsynch.consumer.FileSystemEventConsumer;
+import hu.zrs.lsynch.consumer.processor.FileCopyProcessor;
 import hu.zrs.lsynch.consumer.processor.FileSystemEventLoggerProcessor;
 import hu.zrs.lsynch.factory.FileSystemEventFactory;
 import hu.zrs.lsynch.registry.DefaultWatchKeyPathRegistry;
@@ -51,10 +51,10 @@ public class IntegrationTestConfiguration {
 	}
 
 	@Bean
-	public List<EventProcessor<Path, Kind<Path>>> eventProcessors() {
-		final List<EventProcessor<Path, Kind<Path>>> eventProcessors = new ArrayList<>();
-		final EventProcessor<Path, Kind<Path>> loggerProcessor = new FileSystemEventLoggerProcessor();
-		eventProcessors.add(loggerProcessor);
+	public List<EventProcessor<FileSystemEvent>> eventProcessors() throws IOException {
+		final List<EventProcessor<FileSystemEvent>> eventProcessors = new ArrayList<>();
+		eventProcessors.add(new FileSystemEventLoggerProcessor());
+		eventProcessors.add(new FileCopyProcessor(targetDirectory()));
 		return eventProcessors;
 	}
 
@@ -74,7 +74,7 @@ public class IntegrationTestConfiguration {
 	}
 
 	@Bean
-	public EventRegistry<DelayedEvent<Path, Kind<Path>>> fileSystemEventRegistry() {
+	public EventRegistry<FileSystemEvent> fileSystemEventRegistry() {
 		return new FileSystemEventRegistry();
 	}
 

@@ -1,9 +1,9 @@
 package hu.zrs.lsynch.api.consumer.processor;
 
-import hu.zrs.lsynch.api.event.DelayedEvent;
+import hu.zrs.lsynch.api.event.Event;
 
-public interface EventProcessor<S, T> {
+public interface EventProcessor<E extends Event<?, ?>> {
 
-	DelayedEvent<S, T> process(DelayedEvent<S, T> event);
+	E process(E event);
 
 }

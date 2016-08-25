@@ -53,7 +53,7 @@ public class RecursiveDirectoryWatcher implements DirectoryWatcher{
 
 	@Override
 	public void addToWatch(Path path) {
-
+		// registerDirectory(path);
 		final File fileEntry = path.toFile();
 		if(fileEntry.exists() && fileEntry.isDirectory()){
 			try {

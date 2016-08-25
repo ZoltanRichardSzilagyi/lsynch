@@ -1,20 +1,17 @@
 package hu.zrs.lsynch.consumer.processor;
 
-import java.nio.file.Path;
-import java.nio.file.WatchEvent.Kind;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import hu.zrs.lsynch.api.consumer.processor.EventProcessor;
-import hu.zrs.lsynch.api.event.DelayedEvent;
+import hu.zrs.lsynch.api.event.FileSystemEvent;
 
-public class FileSystemEventLoggerProcessor implements EventProcessor<Path, Kind<Path>> {
+public class FileSystemEventLoggerProcessor implements EventProcessor<FileSystemEvent> {
 
 	private static final Logger logger = LoggerFactory.getLogger(FileSystemEventLoggerProcessor.class);
 
 	@Override
-	public DelayedEvent<Path, Kind<Path>> process(DelayedEvent<Path, Kind<Path>> event) {
+	public FileSystemEvent process(FileSystemEvent event) {
 		logger.info("Process {}", event.getSource().toFile());
 		return event;
 	}

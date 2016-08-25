@@ -51,7 +51,7 @@ public class IntegrationTest {
 		targetDirectory.toFile().delete();
 	}
 
-	@Test(timeout = 5000)
+	@Test(timeout = 50000)
 	public void shouldSynchronizeOneNewFile() throws IOException {
 		directoryWatcher.addToWatch(sourceDirectory);
 		final Path testFile = Paths.get(sourceDirectory.toString(), "test.txt");

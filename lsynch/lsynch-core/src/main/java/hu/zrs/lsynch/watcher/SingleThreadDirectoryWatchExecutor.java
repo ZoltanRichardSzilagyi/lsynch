@@ -12,7 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import hu.zrs.lsynch.api.event.DelayedEvent;
+import hu.zrs.lsynch.api.event.FileSystemEvent;
 import hu.zrs.lsynch.api.factory.DelayedEventFactory;
 import hu.zrs.lsynch.api.registry.EventRegistry;
 import hu.zrs.lsynch.api.registry.WatchKeyPathRegistry;
@@ -28,10 +28,10 @@ public class SingleThreadDirectoryWatchExecutor implements DirectoryWatchExecuto
 	private WatchService watchService;
 
 	@Autowired
-	private EventRegistry<DelayedEvent<Path, Kind<Path>>> eventRegistry;
+	private EventRegistry<FileSystemEvent> eventRegistry;
 
 	@Autowired
-	private DelayedEventFactory<Path, Kind<Path>> changeEventFactory;
+	private DelayedEventFactory<FileSystemEvent, Path, Kind<Path>> changeEventFactory;
 
 	@Autowired
 	private WatchKeyPathRegistry watchKeyPathRegistry;
@@ -64,7 +64,7 @@ public class SingleThreadDirectoryWatchExecutor implements DirectoryWatchExecuto
 			final Path basePath = watchKeyPathRegistry.get(watchKey);
 			final Path fullPath = basePath.resolve(watchEvent.context());
 
-			final DelayedEvent<Path, Kind<Path>> changeEvent = changeEventFactory.createEvent(fullPath,
+			final FileSystemEvent changeEvent = changeEventFactory.createEvent(fullPath,
 					watchEvent.kind());
 			eventRegistry.registerEvent(changeEvent);
 		});
