@@ -16,6 +16,7 @@ import hu.zrs.lsynch.api.registry.EventRegistry;
 
 public class FileSystemEventConsumer implements EventConsumer {
 
+	@Autowired
 	private List<EventProcessor<Path, Kind<Path>>> eventProcessors;
 
 	private final ExecutorService consumerExecutor = Executors.newSingleThreadExecutor();

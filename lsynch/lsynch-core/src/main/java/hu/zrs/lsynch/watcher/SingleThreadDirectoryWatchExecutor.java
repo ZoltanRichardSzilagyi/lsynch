@@ -11,7 +11,6 @@ import java.util.concurrent.Executors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import hu.zrs.lsynch.api.event.DelayedEvent;
 import hu.zrs.lsynch.api.factory.DelayedEventFactory;
@@ -19,7 +18,6 @@ import hu.zrs.lsynch.api.registry.EventRegistry;
 import hu.zrs.lsynch.api.registry.WatchKeyPathRegistry;
 import hu.zrs.lsynch.api.watcher.DirectoryWatchExecutor;
 
-@Component
 public class SingleThreadDirectoryWatchExecutor implements DirectoryWatchExecutor {
 
 	private static final Logger logger = LoggerFactory.getLogger(SingleThreadDirectoryWatchExecutor.class);

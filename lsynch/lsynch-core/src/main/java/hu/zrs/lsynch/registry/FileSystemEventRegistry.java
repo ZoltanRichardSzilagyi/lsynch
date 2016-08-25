@@ -6,12 +6,10 @@ import java.util.concurrent.DelayQueue;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
 
 import hu.zrs.lsynch.api.event.DelayedEvent;
 import hu.zrs.lsynch.api.registry.EventRegistry;
 
-@Component
 public class FileSystemEventRegistry implements EventRegistry<DelayedEvent<Path, Kind<Path>>> {
 
 	private final Logger logger = LoggerFactory.getLogger(FileSystemEventRegistry.class);
