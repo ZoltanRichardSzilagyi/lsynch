@@ -22,8 +22,7 @@ import hu.zrs.lsynch.api.registry.WatchKeyPathRegistry;
 import hu.zrs.lsynch.api.watcher.DirectoryWatchExecutor;
 import hu.zrs.lsynch.api.watcher.DirectoryWatcher;
 import hu.zrs.lsynch.consumer.FileSystemEventConsumer;
-import hu.zrs.lsynch.consumer.processor.FileCopyProcessor;
-import hu.zrs.lsynch.consumer.processor.FileSystemEventLoggerProcessor;
+import hu.zrs.lsynch.consumer.processor.FileSystemEventLogger;
 import hu.zrs.lsynch.factory.FileSystemEventFactory;
 import hu.zrs.lsynch.registry.DefaultWatchKeyPathRegistry;
 import hu.zrs.lsynch.registry.FileSystemEventRegistry;
@@ -53,8 +52,7 @@ public class IntegrationTestConfiguration {
 	@Bean
 	public List<EventProcessor<FileSystemEvent>> eventProcessors() throws IOException {
 		final List<EventProcessor<FileSystemEvent>> eventProcessors = new ArrayList<>();
-		eventProcessors.add(new FileSystemEventLoggerProcessor());
-		eventProcessors.add(new FileCopyProcessor(targetDirectory()));
+		eventProcessors.add(new FileSystemEventLogger());
 		return eventProcessors;
 	}
 

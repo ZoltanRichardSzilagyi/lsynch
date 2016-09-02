@@ -7,23 +7,25 @@ import java.nio.file.WatchEvent.Kind;
 import java.util.concurrent.Delayed;
 import java.util.concurrent.TimeUnit;
 
-public class FileSystemEvent implements Event<Path, Kind<Path>>, Delayed {
+import hu.zrs.lsynch.api.entry.FileSystemEntry;
 
-	private final Path path;
+public class FileSystemEvent implements Event<FileSystemEntry, Kind<Path>>, Delayed {
+
+	private final FileSystemEntry fileSystemEntry;
 
 	private final Kind<Path> eventType;
 
 	private final Long executeAt;
 
-	public FileSystemEvent(Path path, Kind<Path> eventType, Long executeAt) {
-		this.path = path;
+	public FileSystemEvent(FileSystemEntry fileSystemEntry, Kind<Path> eventType, Long executeAt) {
+		this.fileSystemEntry = fileSystemEntry;
 		this.eventType = eventType;
 		this.executeAt = executeAt;
 	}
 
 	@Override
-	public Path getSource() {
-		return path;
+	public FileSystemEntry getSource() {
+		return fileSystemEntry;
 	}
 
 	@Override

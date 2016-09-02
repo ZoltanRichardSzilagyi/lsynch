@@ -9,8 +9,11 @@ dependencies {
     compile 'org.slf4j:slf4j-simple:1.7.21'
 	compile group: 'org.springframework', name: 'spring-context', version: '4.3.1.RELEASE'
     compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.4'
-
+	compile group: 'org.mapdb', name: 'mapdb', version: '3.0.1'
+	
+	
 	compile project(':lsynch-api')
+	
 	
     testCompile 'junit:junit:4.12'
 	testCompile 'org.springframework:spring-test:4.3.1.RELEASE'
